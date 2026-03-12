@@ -482,13 +482,6 @@ const AuthPortal: React.FC<AuthPortalProps> = ({ onLoginSuccess, databaseService
               </div>
             )}
           </div>
-
-          {/* Demo Accounts Info */}
-          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-            <p className="text-xs text-gray-600 text-center">
-              Demo-Zugänge: <span className="font-mono">admin/admin123</span> oder <span className="font-mono">demo/demo123</span>
-            </p>
-          </div>
         </div>
       </div>
     </div>

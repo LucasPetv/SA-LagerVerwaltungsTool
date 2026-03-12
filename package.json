@@ -29,6 +29,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-gh-pages": "GITHUB_PAGES=true vite build",
     "preview": "vite preview",
     "electron": "electron .",
     "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5174 && npx electron .\"",
@@ -36,7 +37,8 @@
     "dist": "npm run build && electron-builder --publish=never",
     "dist-simple": "npm run build && electron-builder --publish=never --win --x64",
     "dist-portable": "npm run build && electron-builder --win portable --x64",
-    "pack-portable": "npm run build && npx electron-packager . \"InventoryPro Analytics\" --platform=win32 --arch=x64 --out=release --overwrite"
+    "pack-portable": "npm run build && npx electron-packager . \"InventoryPro Analytics\" --platform=win32 --arch=x64 --out=release --overwrite",
+    "deploy": "npm run build-gh-pages && gh-pages -d dist"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -57,6 +59,7 @@
     "electron": "^40.2.1",
     "electron-builder": "^26.7.0",
     "electron-packager": "^17.1.2",
+    "gh-pages": "^6.3.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0",
     "wait-on": "^8.0.1"

@@ -4,8 +4,14 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
+    
+    // GitHub Pages base path
+    const base = mode === 'production' && process.env.GITHUB_PAGES 
+      ? '/SA-LagerVerwaltungsTool/' 
+      : './';
+    
     return {
-      base: './', // Wichtig für Electron
+      base: base, // Wichtig für Electron UND GitHub Pages
       server: {
         port: 5174, // Different port to avoid conflicts
         host: '0.0.0.0',
