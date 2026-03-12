@@ -1,0 +1,111 @@
+{
+  "name": "inventorypro-analytics",
+  "version": "1.0.1",
+  "description": "Modern Electron-based inventory analysis application with KPI calculations and Excel/CSV import",
+  "main": "electron/main-simple.cjs",
+  "type": "module",
+  "homepage": "./",
+  "author": "InventoryPro Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/inventorypro-analytics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/inventorypro-analytics/issues"
+  },
+  "keywords": [
+    "inventory",
+    "analytics",
+    "electron",
+    "react",
+    "typescript",
+    "kpi",
+    "excel",
+    "csv",
+    "dashboard"
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5174 && npx electron .\"",
+    "build-electron": "npm run build && electron-builder",
+    "dist": "npm run build && electron-builder --publish=never",
+    "dist-simple": "npm run build && electron-builder --publish=never --win --x64",
+    "dist-portable": "npm run build && electron-builder --win portable --x64",
+    "pack-portable": "npm run build && npx electron-packager . \"InventoryPro Analytics\" --platform=win32 --arch=x64 --out=release --overwrite"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.563.0",
+    "mysql2": "^3.16.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "recharts": "^3.7.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.1.1",
+    "electron": "^40.2.1",
+    "electron-builder": "^26.7.0",
+    "electron-packager": "^17.1.2",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.inventorypro.analytics",
+    "productName": "InventoryPro Analytics",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "!node_modules"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/",
+        "to": "assets/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.business"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}.${ext}",
+      "requestedExecutionLevel": "asInvoker",
+      "forceCodeSigning": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
